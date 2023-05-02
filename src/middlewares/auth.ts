@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from "express";
 
 import {sign, verify} from 'jsonwebtoken';
 import { User } from "../modules/auth/models/user.model";
-import { myDataSource } from "../app-data-source";
+import { myDataSource } from "../connections/app-data-source";
 
 
 /**

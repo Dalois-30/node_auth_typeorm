@@ -1,7 +1,8 @@
 import * as express from "express"
-import { myDataSource } from "./app-data-source"
+import { myDataSource } from "./connections/app-data-source"
 import { authRoutes } from "./modules/auth/routes/auth.route";
 import { userRoutes } from "./modules/auth/routes/user.route";
+import morgan = require("morgan");
 
 
 // establish database connection
@@ -17,9 +18,8 @@ myDataSource
 
 // create and setup express app
 const app = express()
+app.use(morgan('dev'))
 app.use(express.json())
-
-app.use(express.json());
 app.use((req, res, next) => {
     // access app from all origins
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.urlencoded({ extended: true }));
+app.get("/", async (req, res) => res.send("hello backend !"));
 
 // differents routes
 authRoutes(app)

@@ -5,7 +5,7 @@ import { sign, verify } from 'jsonwebtoken';
 
 import { User } from "../models/user.model";
 import { Token } from "../models/token.model";
-import { myDataSource } from "../../../app-data-source";
+import { myDataSource } from "../../../connections/app-data-source";
 
 /**
  * 
